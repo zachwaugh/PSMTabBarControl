@@ -14,7 +14,6 @@
 - (void)awakeFromNib
 {
     [self newWindow:self];
-    [self newWindow:self];
     NSRect frontFrame = [[NSApp keyWindow] frame];
     frontFrame.origin.x += 400;
     [[NSApp keyWindow] setFrame:frontFrame display:YES];
