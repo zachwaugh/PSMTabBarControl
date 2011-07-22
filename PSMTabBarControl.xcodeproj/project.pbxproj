@@ -208,19 +208,19 @@
 		A251BE820959A1B90058BC7F /* PSMOverflowPopUpButton.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PSMOverflowPopUpButton.m; path = source/PSMOverflowPopUpButton.m; sourceTree = "<group>"; };
 		A251BE830959A1B90058BC7F /* PSMTabBarCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PSMTabBarCell.h; path = source/PSMTabBarCell.h; sourceTree = "<group>"; };
 		A251BE840959A1B90058BC7F /* PSMTabBarCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PSMTabBarCell.m; path = source/PSMTabBarCell.m; sourceTree = "<group>"; };
-		A251BE890959A1EA0058BC7F /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = source/AppController.h; sourceTree = "<group>"; };
-		A251BE8A0959A1EA0058BC7F /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = AppController.m; path = source/AppController.m; sourceTree = "<group>"; };
-		A251BE8B0959A1EA0058BC7F /* FakeModel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = FakeModel.h; path = source/FakeModel.h; sourceTree = "<group>"; };
-		A251BE8C0959A1EA0058BC7F /* FakeModel.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = FakeModel.m; path = source/FakeModel.m; sourceTree = "<group>"; };
-		A251BE8D0959A1EA0058BC7F /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/main.m; sourceTree = "<group>"; };
+		A251BE890959A1EA0058BC7F /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		A251BE8A0959A1EA0058BC7F /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		A251BE8B0959A1EA0058BC7F /* FakeModel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = FakeModel.h; sourceTree = "<group>"; };
+		A251BE8C0959A1EA0058BC7F /* FakeModel.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = FakeModel.m; sourceTree = "<group>"; };
+		A251BE8D0959A1EA0058BC7F /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A251BE9B0959A2530058BC7F /* ReadMe.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = ReadMe.rtfd; sourceTree = "<group>"; };
 		A251BEA00959BB5B0058BC7F /* TabBarControlDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabBarControlDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A251BEA20959BB5B0058BC7F /* TabBarControlDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TabBarControlDemo-Info.plist"; sourceTree = "<group>"; };
 		A268EA5F09A9831800E082AA /* PSMRolloverButton.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PSMRolloverButton.h; path = source/PSMRolloverButton.h; sourceTree = "<group>"; };
 		A268EA6009A9831800E082AA /* PSMRolloverButton.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PSMRolloverButton.m; path = source/PSMRolloverButton.m; sourceTree = "<group>"; };
 		A2A711BA09E5AE1E00D0089B /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Window.nib; sourceTree = "<group>"; };
-		A2A711BD09E5BF0500D0089B /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowController.h; path = source/WindowController.h; sourceTree = "<group>"; };
-		A2A711BE09E5BF0500D0089B /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowController.m; path = source/WindowController.m; sourceTree = "<group>"; };
+		A2A711BD09E5BF0500D0089B /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
+		A2A711BE09E5BF0500D0089B /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
 		A2D32EDA09A634C900EC8662 /* PSMTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMTabStyle.h; path = source/PSMTabStyle.h; sourceTree = "<group>"; };
 		A2D32EE609A6399300EC8662 /* PSMAquaTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMAquaTabStyle.h; path = source/PSMAquaTabStyle.h; sourceTree = "<group>"; };
 		A2D32EE709A6399300EC8662 /* PSMAquaTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSMAquaTabStyle.m; path = source/PSMAquaTabStyle.m; sourceTree = "<group>"; };
@@ -391,6 +391,7 @@
 				A251BE8D0959A1EA0058BC7F /* main.m */,
 			);
 			name = "Demo App";
+			path = source/demo;
 			sourceTree = "<group>";
 		};
 		A251BE8E0959A21A0058BC7F /* Images */ = {
