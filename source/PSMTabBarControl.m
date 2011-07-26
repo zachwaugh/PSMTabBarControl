@@ -712,234 +712,128 @@
 #pragma mark Hide/Show
 
 - (void)hideTabBar:(BOOL)hide animate:(BOOL)animate
-{
-    if (!_awakenedFromNib || (_isHidden && hide) || (!_isHidden && !hide) || (_currentStep != kPSMIsNotBeingResized)) {
-        return;
-	}
-	
-    [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+{  
+  if (!_awakenedFromNib || (_isHidden && hide) || (!_isHidden && !hide)) return;
+  
+  [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
-    _isHidden = hide;
-    _currentStep = 0;
-    if (!animate) {
-        _currentStep = (NSInteger)kPSMHideAnimationSteps;
+  _isHidden = hide;
+  _currentStep = 0;
+  if (!animate)
+  {
+    _currentStep = (NSInteger)kPSMHideAnimationSteps;
 	}
 
-	if (hide) {
+	if (hide)
+  {
 		[_overflowPopUpButton removeFromSuperview];
 		[_addTabButton removeFromSuperview];
-	} else if (!animate) {
+	}
+  else if (!animate)
+  {
 		[self addSubview:_overflowPopUpButton];
 		[self addSubview:_addTabButton];
 	}
 
-    CGFloat partnerOriginalSize, partnerOriginalOrigin, myOriginalSize, myOriginalOrigin, partnerTargetSize, partnerTargetOrigin, myTargetSize, myTargetOrigin;
+  CGFloat partnerOriginalSize, partnerOriginalOrigin, myOriginalSize, myOriginalOrigin, partnerTargetSize, partnerTargetOrigin, myTargetSize, myTargetOrigin;
     
-    // target values for partner
-    if ([self orientation] == PSMTabBarHorizontalOrientation) {
-		// current (original) values
-		myOriginalSize = [self frame].size.height;
-		myOriginalOrigin = [self frame].origin.y;
-		if (partnerView) {
-			partnerOriginalSize = [partnerView frame].size.height;
-			partnerOriginalOrigin = [partnerView frame].origin.y;
-		} else {
-			partnerOriginalSize = [[self window] frame].size.height;
-			partnerOriginalOrigin = [[self window] frame].origin.y;
-		}
-		
-		if (partnerView) {
-			// above or below me?
-			if ((myOriginalOrigin - 22) > partnerOriginalOrigin) {
-				// partner is below me
-				if (_isHidden) {
-					// I'm shrinking
-					myTargetOrigin = myOriginalOrigin + 21;
-					myTargetSize = myOriginalSize - 21;
-					partnerTargetOrigin = partnerOriginalOrigin;
-					partnerTargetSize = partnerOriginalSize + 21;
-				} else {
-					// I'm growing
-					myTargetOrigin = myOriginalOrigin - 21;
-					myTargetSize = myOriginalSize + 21;
-					partnerTargetOrigin = partnerOriginalOrigin;
-					partnerTargetSize = partnerOriginalSize - 21;
-				}
-			} else {
-				// partner is above me
-				if (_isHidden) {
-					// I'm shrinking
-					myTargetOrigin = myOriginalOrigin;
-					myTargetSize = myOriginalSize - 21;
-					partnerTargetOrigin = partnerOriginalOrigin - 21;
-					partnerTargetSize = partnerOriginalSize + 21;
-				} else {
-					// I'm growing
-					myTargetOrigin = myOriginalOrigin;
-					myTargetSize = myOriginalSize + 21;
-					partnerTargetOrigin = partnerOriginalOrigin + 21;
-					partnerTargetSize = partnerOriginalSize - 21;
-				}
-			}
-		} else {
-			// for window movement
-			if (_isHidden) {
-				// I'm shrinking
-				myTargetOrigin = myOriginalOrigin;
-				myTargetSize = myOriginalSize - 21;
-				partnerTargetOrigin = partnerOriginalOrigin + 21;
-				partnerTargetSize = partnerOriginalSize - 21;
-			} else {
-				// I'm growing
-				myTargetOrigin = myOriginalOrigin;
-				myTargetSize = myOriginalSize + 21;
-				partnerTargetOrigin = partnerOriginalOrigin - 21;
-				partnerTargetSize = partnerOriginalSize + 21;
-			}
-		}
-	} else /* vertical */ {
-		// current (original) values
-		myOriginalSize = [self frame].size.width;
-		myOriginalOrigin = [self frame].origin.x;
-		if (partnerView) {
-			partnerOriginalSize = [partnerView frame].size.width;
-			partnerOriginalOrigin = [partnerView frame].origin.x;
-		} else {
-			partnerOriginalSize = [[self window] frame].size.width;
-			partnerOriginalOrigin = [[self window] frame].origin.x;
-		}
-		
-		if (partnerView) {
-			//to the left or right?
-			if (myOriginalOrigin < partnerOriginalOrigin + partnerOriginalSize) {
-				// partner is to the left
-				if (_isHidden) {
-					// I'm shrinking
-					myTargetOrigin = myOriginalOrigin;
-					myTargetSize = 1;
-					partnerTargetOrigin = partnerOriginalOrigin - myOriginalSize + 1;
-					partnerTargetSize = partnerOriginalSize + myOriginalSize - 1;
-					_tabBarWidth = myOriginalSize;
-				} else {
-					// I'm growing
-					myTargetOrigin = myOriginalOrigin;
-					myTargetSize = myOriginalSize + _tabBarWidth;
-					partnerTargetOrigin = partnerOriginalOrigin + _tabBarWidth;
-					partnerTargetSize = partnerOriginalSize - _tabBarWidth;
-				}
-			} else {
-				// partner is to the right
-				if (_isHidden) {
-					// I'm shrinking
-					myTargetOrigin = myOriginalOrigin + myOriginalSize;
-					myTargetSize = 1;
-					partnerTargetOrigin = partnerOriginalOrigin;
-					partnerTargetSize = partnerOriginalSize + myOriginalSize;
-					_tabBarWidth = myOriginalSize;
-				} else {
-					// I'm growing
-					myTargetOrigin = myOriginalOrigin - _tabBarWidth;
-					myTargetSize = myOriginalSize + _tabBarWidth;
-					partnerTargetOrigin = partnerOriginalOrigin;
-					partnerTargetSize = partnerOriginalSize - _tabBarWidth;
-				}
-			}
-		} else {
-			// for window movement
-			if (_isHidden) {
-				// I'm shrinking
-				myTargetOrigin = myOriginalOrigin;
-				myTargetSize = 1;
-				partnerTargetOrigin = partnerOriginalOrigin + myOriginalSize - 1;
-				partnerTargetSize = partnerOriginalSize - myOriginalSize + 1;
-				_tabBarWidth = myOriginalSize;
-			} else {
-				// I'm growing
-				myTargetOrigin = myOriginalOrigin;
-				myTargetSize = _tabBarWidth;
-				partnerTargetOrigin = partnerOriginalOrigin - _tabBarWidth + 1;
-				partnerTargetSize = partnerOriginalSize + _tabBarWidth - 1;
-			}
-		}
-		
-		if (!_isHidden && [[self delegate] respondsToSelector:@selector(desiredWidthForVerticalTabBar:)])
-			myTargetSize = [[self delegate] desiredWidthForVerticalTabBar:self];
-	}
+  // current (original) values
+  myOriginalSize = [self frame].size.height;
+  myOriginalOrigin = [self frame].origin.y;
+  
+  if (partnerView)
+  {
+    partnerOriginalSize = [partnerView frame].size.height;
+    partnerOriginalOrigin = [partnerView frame].origin.y;
+  }
+  else
+  {
+    partnerOriginalSize = [[self window] frame].size.height;
+    partnerOriginalOrigin = [[self window] frame].origin.y;
+  }
+  
+  if (partnerView)
+  {
+    // above or below me?
+    if ((myOriginalOrigin - 22) > partnerOriginalOrigin)
+    {
+      // partner is below me
+      if (_isHidden)
+      {
+        // I'm shrinking
+        myTargetOrigin = myOriginalOrigin + 21;
+        myTargetSize = myOriginalSize - 21;
+        partnerTargetOrigin = partnerOriginalOrigin;
+        partnerTargetSize = partnerOriginalSize + 21;
+      }
+      else
+      {
+        // I'm growing
+        myTargetOrigin = myOriginalOrigin - 21;
+        myTargetSize = myOriginalSize + 21;
+        partnerTargetOrigin = partnerOriginalOrigin;
+        partnerTargetSize = partnerOriginalSize - 21;
+      }
+    }
+    else
+    {
+      // partner is above me
+      if (_isHidden)
+      {
+        // I'm shrinking
+        myTargetOrigin = myOriginalOrigin;
+        myTargetSize = myOriginalSize - 21;
+        partnerTargetOrigin = partnerOriginalOrigin - 21;
+        partnerTargetSize = partnerOriginalSize + 21;
+      }
+      else
+      {
+        // I'm growing
+        myTargetOrigin = myOriginalOrigin;
+        myTargetSize = myOriginalSize + 21;
+        partnerTargetOrigin = partnerOriginalOrigin + 21;
+        partnerTargetSize = partnerOriginalSize - 21;
+      }
+    }
+  }
+  else
+  {
+    // for window movement
+    if (_isHidden)
+    {
+      // I'm shrinking
+      myTargetOrigin = myOriginalOrigin;
+      myTargetSize = myOriginalSize - 21;
+      partnerTargetOrigin = partnerOriginalOrigin + 21;
+      partnerTargetSize = partnerOriginalSize - 21;
+    }
+    else
+    {
+      // I'm growing
+      myTargetOrigin = myOriginalOrigin;
+      myTargetSize = myOriginalSize + 21;
+      partnerTargetOrigin = partnerOriginalOrigin - 21;
+      partnerTargetSize = partnerOriginalSize + 21;
+    }
+  }
 
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:myOriginalOrigin], @"myOriginalOrigin", [NSNumber numberWithDouble:partnerOriginalOrigin], @"partnerOriginalOrigin", [NSNumber numberWithDouble:myOriginalSize], @"myOriginalSize", [NSNumber numberWithDouble:partnerOriginalSize], @"partnerOriginalSize", [NSNumber numberWithDouble:myTargetOrigin], @"myTargetOrigin", [NSNumber numberWithDouble:partnerTargetOrigin], @"partnerTargetOrigin", [NSNumber numberWithDouble:myTargetSize], @"myTargetSize", [NSNumber numberWithDouble:partnerTargetSize], @"partnerTargetSize", nil];
-	if (_showHideAnimationTimer) {
-		[_showHideAnimationTimer invalidate];
-		[_showHideAnimationTimer release];
-	}
-    _showHideAnimationTimer = [[NSTimer scheduledTimerWithTimeInterval:(1.0 / 30.0) target:self selector:@selector(animateShowHide:) userInfo:userInfo repeats:YES] retain];
+  [NSAnimationContext beginGrouping];
+  [[NSAnimationContext currentContext] setDuration:0.1];
+  
+  [[self animator] setFrame:NSMakeRect([self frame].origin.x, myTargetOrigin, NSWidth([self frame]), myTargetSize)];
+  
+  if (partnerView)
+  {
+    [[partnerView animator] setFrame:NSMakeRect([partnerView frame].origin.x, partnerTargetOrigin, NSWidth([partnerView frame]), partnerTargetSize)];
+  }
+  else
+  {
+    [[[self window] animator] setFrame:NSMakeRect([[self window] frame].origin.x, partnerTargetOrigin, NSWidth([[self window] frame]), partnerTargetSize)];
+  }
+  
+  [NSAnimationContext endGrouping];
 }
 
-- (void)animateShowHide:(NSTimer *)timer
-{
-    // moves the frame of the tab bar and window (or partner view) linearly to hide or show the tab bar
-    NSRect myFrame = [self frame];
-	NSDictionary *userInfo = [timer userInfo];
-    CGFloat myCurrentOrigin = ([[userInfo objectForKey:@"myOriginalOrigin"] doubleValue] + (([[userInfo objectForKey:@"myTargetOrigin"] doubleValue] - [[userInfo objectForKey:@"myOriginalOrigin"] doubleValue]) * (_currentStep/kPSMHideAnimationSteps)));
-    CGFloat myCurrentSize = ([[userInfo objectForKey:@"myOriginalSize"] doubleValue] + (([[userInfo objectForKey:@"myTargetSize"] doubleValue] - [[userInfo objectForKey:@"myOriginalSize"] doubleValue]) * (_currentStep/kPSMHideAnimationSteps)));
-    CGFloat partnerCurrentOrigin = ([[userInfo objectForKey:@"partnerOriginalOrigin"] doubleValue] + (([[userInfo objectForKey:@"partnerTargetOrigin"] doubleValue] - [[userInfo objectForKey:@"partnerOriginalOrigin"] doubleValue]) * (_currentStep/kPSMHideAnimationSteps)));
-    CGFloat partnerCurrentSize = ([[userInfo objectForKey:@"partnerOriginalSize"] doubleValue] + (([[userInfo objectForKey:@"partnerTargetSize"] doubleValue] - [[userInfo objectForKey:@"partnerOriginalSize"] doubleValue]) * (_currentStep/kPSMHideAnimationSteps)));
-    
-	NSRect myNewFrame;
-	if ([self orientation] == PSMTabBarHorizontalOrientation) {
-		myNewFrame = NSMakeRect(myFrame.origin.x, myCurrentOrigin, myFrame.size.width, myCurrentSize);
-	} else {
-		myNewFrame = NSMakeRect(myCurrentOrigin, myFrame.origin.y, myCurrentSize, myFrame.size.height);
-	}
-    
-    if (partnerView) {
-        // resize self and view
-		NSRect resizeRect;
-        if ([self orientation] == PSMTabBarHorizontalOrientation) {
-			resizeRect = NSMakeRect([partnerView frame].origin.x, partnerCurrentOrigin, [partnerView frame].size.width, partnerCurrentSize);
-		} else {
-			resizeRect = NSMakeRect(partnerCurrentOrigin, [partnerView frame].origin.y, partnerCurrentSize, [partnerView frame].size.height);
-		}
-		[partnerView setFrame:resizeRect];
-        [partnerView setNeedsDisplay:YES];
-        [self setFrame:myNewFrame];
-    } else {
-        // resize self and window
-		NSRect resizeRect;
-        if ([self orientation] == PSMTabBarHorizontalOrientation) {
-			resizeRect = NSMakeRect([[self window] frame].origin.x, partnerCurrentOrigin, [[self window] frame].size.width, partnerCurrentSize);
-		} else {
-			resizeRect = NSMakeRect(partnerCurrentOrigin, [[self window] frame].origin.y, partnerCurrentSize, [[self window] frame].size.height);
-		}
-        [[self window] setFrame:resizeRect display:YES];
-        [self setFrame:myNewFrame];
-    }
-    
-    // next
-    _currentStep++;
-    if (_currentStep == kPSMHideAnimationSteps + 1) {
-		_currentStep = kPSMIsNotBeingResized;
-        [self viewDidEndLiveResize];
-        [self update:NO];
-		
-		//send the delegate messages
-		if (_isHidden) {
-			if ([[self delegate] respondsToSelector:@selector(tabView:tabBarDidHide:)]) {
-				[[self delegate] tabView:[self tabView] tabBarDidHide:self];
-			}
-		} else {
-			[self addSubview:_overflowPopUpButton];
-			[self addSubview:_addTabButton];
-
-			if ([[self delegate] respondsToSelector:@selector(tabView:tabBarDidUnhide:)]) {
-				[[self delegate] tabView:[self tabView] tabBarDidUnhide:self];
-			}
-		}
-		
-		[_showHideAnimationTimer invalidate];
-		[_showHideAnimationTimer release]; _showHideAnimationTimer = nil;
-    }
-    [[self window] display];
-}
 
 - (BOOL)isTabBarHidden
 {
@@ -948,7 +842,7 @@
 
 - (BOOL)isAnimating
 {
-    return _animationTimer != nil;
+  return _animationTimer != nil;
 }
 
 - (id)partnerView
