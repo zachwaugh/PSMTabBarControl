@@ -34,7 +34,6 @@
 		346A5E110C58E3C5004563F0 /* Warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 34FD827C0BAC685B00BBAA24 /* Warning.png */; };
 		347545B00C4944DA003E81B8 /* NSString_AITruncation.h in Headers */ = {isa = PBXBuildFile; fileRef = 347545AE0C4944DA003E81B8 /* NSString_AITruncation.h */; };
 		347545B10C4944DB003E81B8 /* NSString_AITruncation.m in Sources */ = {isa = PBXBuildFile; fileRef = 347545AF0C4944DA003E81B8 /* NSString_AITruncation.m */; };
-		3482DF100C5BF90700426F15 /* PSMAdiumTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767A7560A2D449B005F7522 /* PSMAdiumTabStyle.m */; };
 		34FD82880BAC685B00BBAA24 /* AquaTabsSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 34FD82620BAC685B00BBAA24 /* AquaTabsSeparator.png */; };
 		34FD828B0BAC685B00BBAA24 /* AquaTabsDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 34FD82650BAC685B00BBAA24 /* AquaTabsDown.png */; };
 		34FD828C0BAC685B00BBAA24 /* pi.png in Resources */ = {isa = PBXBuildFile; fileRef = 34FD82660BAC685B00BBAA24 /* pi.png */; };
@@ -67,7 +66,6 @@
 		34FD82B20BAC686D00BBAA24 /* sally_large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 34FD82670BAC685B00BBAA24 /* sally_large.jpg */; };
 		3748D19E0B17834D002D71C0 /* PSMTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3748D19B0B17834D002D71C0 /* PSMTabBarController.h */; };
 		3748D19F0B17834D002D71C0 /* PSMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748D19C0B17834D002D71C0 /* PSMTabBarController.m */; };
-		3767A7590A2D449B005F7522 /* PSMAdiumTabStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 3767A7550A2D449B005F7522 /* PSMAdiumTabStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3767A91D0A2F7A11005F7522 /* PSMTabDragWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767A91A0A2F7A11005F7522 /* PSMTabDragWindow.m */; };
 		3769D0850A349FCD00D71EDA /* PSMTabBarControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DF68FD067E5B5A0090B5B0 /* PSMTabBarControl.framework */; };
 		3769D08A0A349FDD00D71EDA /* PSMTabBarControl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53DF68FD067E5B5A0090B5B0 /* PSMTabBarControl.framework */; };
@@ -91,12 +89,8 @@
 		A2A711BB09E5AE1E00D0089B /* Window.nib in Resources */ = {isa = PBXBuildFile; fileRef = A2A711B909E5AE1E00D0089B /* Window.nib */; };
 		A2A711BF09E5BF0500D0089B /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A711BE09E5BF0500D0089B /* WindowController.m */; };
 		A2D32EDC09A634C900EC8662 /* PSMTabStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = A2D32EDA09A634C900EC8662 /* PSMTabStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A2D32EE809A6399300EC8662 /* PSMAquaTabStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = A2D32EE609A6399300EC8662 /* PSMAquaTabStyle.h */; };
-		A2D32EE909A6399300EC8662 /* PSMAquaTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D32EE709A6399300EC8662 /* PSMAquaTabStyle.m */; };
 		A2D32F0009A63D7A00EC8662 /* PSMMetalTabStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = A2D32EFE09A63D7A00EC8662 /* PSMMetalTabStyle.h */; };
 		A2D32F0109A63D7A00EC8662 /* PSMMetalTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D32EFF09A63D7A00EC8662 /* PSMMetalTabStyle.m */; };
-		A2D98B0A0A2B432C0064C6F8 /* PSMUnifiedTabStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = A2D98B070A2B432C0064C6F8 /* PSMUnifiedTabStyle.h */; };
-		A2D98B0B0A2B432C0064C6F8 /* PSMUnifiedTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D98B080A2B432C0064C6F8 /* PSMUnifiedTabStyle.m */; };
 		A2D98B130A2B43FA0064C6F8 /* NSBezierPath_AMShading.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D98B100A2B43FA0064C6F8 /* NSBezierPath_AMShading.m */; };
 /* End PBXBuildFile section */
 
@@ -187,8 +181,6 @@
 		34FD82860BAC685B00BBAA24 /* Globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Globe.png; path = images/Globe.png; sourceTree = "<group>"; };
 		3748D19B0B17834D002D71C0 /* PSMTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMTabBarController.h; path = source/PSMTabBarController.h; sourceTree = "<group>"; };
 		3748D19C0B17834D002D71C0 /* PSMTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSMTabBarController.m; path = source/PSMTabBarController.m; sourceTree = "<group>"; };
-		3767A7550A2D449B005F7522 /* PSMAdiumTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PSMAdiumTabStyle.h; path = source/PSMAdiumTabStyle.h; sourceTree = "<group>"; };
-		3767A7560A2D449B005F7522 /* PSMAdiumTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PSMAdiumTabStyle.m; path = source/PSMAdiumTabStyle.m; sourceTree = "<group>"; };
 		3767A9190A2F7A11005F7522 /* PSMTabDragWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMTabDragWindow.h; path = source/PSMTabDragWindow.h; sourceTree = "<group>"; };
 		3767A91A0A2F7A11005F7522 /* PSMTabDragWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSMTabDragWindow.m; path = source/PSMTabDragWindow.m; sourceTree = "<group>"; };
 		37A9009C0C279CAD0062045C /* PSMTabDragWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMTabDragWindowController.h; path = source/PSMTabDragWindowController.h; sourceTree = "<group>"; };
@@ -222,12 +214,8 @@
 		A2A711BD09E5BF0500D0089B /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		A2A711BE09E5BF0500D0089B /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
 		A2D32EDA09A634C900EC8662 /* PSMTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMTabStyle.h; path = source/PSMTabStyle.h; sourceTree = "<group>"; };
-		A2D32EE609A6399300EC8662 /* PSMAquaTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMAquaTabStyle.h; path = source/PSMAquaTabStyle.h; sourceTree = "<group>"; };
-		A2D32EE709A6399300EC8662 /* PSMAquaTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSMAquaTabStyle.m; path = source/PSMAquaTabStyle.m; sourceTree = "<group>"; };
 		A2D32EFE09A63D7A00EC8662 /* PSMMetalTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSMMetalTabStyle.h; path = source/PSMMetalTabStyle.h; sourceTree = "<group>"; };
 		A2D32EFF09A63D7A00EC8662 /* PSMMetalTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSMMetalTabStyle.m; path = source/PSMMetalTabStyle.m; sourceTree = "<group>"; };
-		A2D98B070A2B432C0064C6F8 /* PSMUnifiedTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PSMUnifiedTabStyle.h; path = source/PSMUnifiedTabStyle.h; sourceTree = "<group>"; };
-		A2D98B080A2B432C0064C6F8 /* PSMUnifiedTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PSMUnifiedTabStyle.m; path = source/PSMUnifiedTabStyle.m; sourceTree = "<group>"; };
 		A2D98B0F0A2B43FA0064C6F8 /* NSBezierPath_AMShading.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = NSBezierPath_AMShading.h; path = source/NSBezierPath_AMShading.h; sourceTree = "<group>"; };
 		A2D98B100A2B43FA0064C6F8 /* NSBezierPath_AMShading.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = NSBezierPath_AMShading.m; path = source/NSBezierPath_AMShading.m; sourceTree = "<group>"; };
 		DD92D38A0106425D02CA0E72 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -326,14 +314,8 @@
 			isa = PBXGroup;
 			children = (
 				A2D32EDA09A634C900EC8662 /* PSMTabStyle.h */,
-				3767A7550A2D449B005F7522 /* PSMAdiumTabStyle.h */,
-				3767A7560A2D449B005F7522 /* PSMAdiumTabStyle.m */,
-				A2D32EE609A6399300EC8662 /* PSMAquaTabStyle.h */,
-				A2D32EE709A6399300EC8662 /* PSMAquaTabStyle.m */,
 				A2D32EFE09A63D7A00EC8662 /* PSMMetalTabStyle.h */,
 				A2D32EFF09A63D7A00EC8662 /* PSMMetalTabStyle.m */,
-				A2D98B070A2B432C0064C6F8 /* PSMUnifiedTabStyle.h */,
-				A2D98B080A2B432C0064C6F8 /* PSMUnifiedTabStyle.m */,
 			);
 			name = Styles;
 			sourceTree = "<group>";
@@ -445,11 +427,8 @@
 				A251BE850959A1B90058BC7F /* PSMOverflowPopUpButton.h in Headers */,
 				A251BE870959A1B90058BC7F /* PSMTabBarCell.h in Headers */,
 				A2D32EDC09A634C900EC8662 /* PSMTabStyle.h in Headers */,
-				A2D32EE809A6399300EC8662 /* PSMAquaTabStyle.h in Headers */,
 				A2D32F0009A63D7A00EC8662 /* PSMMetalTabStyle.h in Headers */,
 				A268EA6209A9831800E082AA /* PSMRolloverButton.h in Headers */,
-				A2D98B0A0A2B432C0064C6F8 /* PSMUnifiedTabStyle.h in Headers */,
-				3767A7590A2D449B005F7522 /* PSMAdiumTabStyle.h in Headers */,
 				3748D19E0B17834D002D71C0 /* PSMTabBarController.h in Headers */,
 				346373660BCA21F800AD57AD /* NSBezierPath_AMShading.h in Headers */,
 				37A9FB6E0C25FE2B0062045C /* PSMTabDragView.h in Headers */,
@@ -588,19 +567,16 @@
 				546DEAF1067F63070098DCC4 /* PSMTabBarControl.m in Sources */,
 				A251BE860959A1B90058BC7F /* PSMOverflowPopUpButton.m in Sources */,
 				A251BE880959A1B90058BC7F /* PSMTabBarCell.m in Sources */,
-				A2D32EE909A6399300EC8662 /* PSMAquaTabStyle.m in Sources */,
 				A2D32F0109A63D7A00EC8662 /* PSMMetalTabStyle.m in Sources */,
 				A268EA6309A9831800E082AA /* PSMRolloverButton.m in Sources */,
 				A2129BB309AEB58F00724E6C /* PSMProgressIndicator.m in Sources */,
 				A2082A9109EAEB34009AC8BE /* PSMTabDragAssistant.m in Sources */,
-				A2D98B0B0A2B432C0064C6F8 /* PSMUnifiedTabStyle.m in Sources */,
 				A2D98B130A2B43FA0064C6F8 /* NSBezierPath_AMShading.m in Sources */,
 				3767A91D0A2F7A11005F7522 /* PSMTabDragWindow.m in Sources */,
 				3748D19F0B17834D002D71C0 /* PSMTabBarController.m in Sources */,
 				37A9FB6F0C25FE2B0062045C /* PSMTabDragView.m in Sources */,
 				37A900A00C279CAD0062045C /* PSMTabDragWindowController.m in Sources */,
 				347545B10C4944DB003E81B8 /* NSString_AITruncation.m in Sources */,
-				3482DF100C5BF90700426F15 /* PSMAdiumTabStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,9 +12,6 @@
 #import "PSMRolloverButton.h"
 #import "PSMTabStyle.h"
 #import "PSMMetalTabStyle.h"
-#import "PSMAquaTabStyle.h"
-#import "PSMUnifiedTabStyle.h"
-#import "PSMAdiumTabStyle.h"
 #import "PSMTabDragAssistant.h"
 #import "PSMTabBarController.h"
 
@@ -244,56 +241,64 @@
     }
 }
 
-- (void)viewWillMoveToWindow:(NSWindow *)aWindow {
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+- (void)viewWillMoveToWindow:(NSWindow *)aWindow
+{
+  NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	
 	[center removeObserver:self name:NSWindowDidBecomeKeyNotification object:nil];
 	[center removeObserver:self name:NSWindowDidResignKeyNotification object:nil];
 	[center removeObserver:self name:NSWindowDidUpdateNotification object:nil];
 	[center removeObserver:self name:NSWindowDidMoveNotification object:nil];
 	
-	if (_showHideAnimationTimer) {
+	if (_showHideAnimationTimer)
+  {
 		[_showHideAnimationTimer invalidate];
 		[_showHideAnimationTimer release]; _showHideAnimationTimer = nil;
 	}
 	
-    if (aWindow) {
+  if (aWindow)
+  {
 		[center addObserver:self selector:@selector(windowStatusDidChange:) name:NSWindowDidBecomeKeyNotification object:aWindow];
 		[center addObserver:self selector:@selector(windowStatusDidChange:) name:NSWindowDidResignKeyNotification object:aWindow];
 		[center addObserver:self selector:@selector(windowDidUpdate:) name:NSWindowDidUpdateNotification object:aWindow];
 		[center addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidMoveNotification object:aWindow];
-    }
+  }
 }
+
 
 - (void)windowStatusDidChange:(NSNotification *)notification
 {
 	[self setNeedsDisplay:YES];
 }
 
-#pragma mark -
-#pragma mark Accessors
+
+#pragma mark - Accessors
 
 - (NSMutableArray *)cells
 {
-    return _cells;
+  return _cells;
 }
+
 
 - (NSEvent *)lastMouseDownEvent
 {
-    return _lastMouseDownEvent;
+  return _lastMouseDownEvent;
 }
+
 
 - (void)setLastMouseDownEvent:(NSEvent *)event
 {
-    [event retain];
-    [_lastMouseDownEvent release];
-    _lastMouseDownEvent = event;
+  [event retain];
+  [_lastMouseDownEvent release];
+  _lastMouseDownEvent = event;
 }
+
 
 - (id)delegate
 {
-    return delegate;
+  return delegate;
 }
+
 
 - (void)setDelegate:(id)object
 {
@@ -309,10 +314,12 @@
 	[self registerForDraggedTypes:types];
 }
 
+
 - (NSTabView *)tabView
 {
     return tabView;
 }
+
 
 - (void)setTabView:(NSTabView *)view
 {
@@ -321,60 +328,62 @@
     tabView = view;
 }
 
+
 - (id<PSMTabStyle>)style
 {
-    return style;
+  return style;
 }
+
 
 - (NSString *)styleName
 {
-    return [style name];
+  return [style name];
 }
+
 
 - (void)setStyle:(id <PSMTabStyle>)newStyle
 {
-    if (style != newStyle) {
-        [style autorelease];
-        style = [newStyle retain];
-        
-        // restyle add tab button
-        if (_addTabButton) {
-            NSImage *newButtonImage = [style addTabButtonImage];
-            if (newButtonImage) {
-                [_addTabButton setUsualImage:newButtonImage];
-            }
-            
-            newButtonImage = [style addTabButtonPressedImage];
-            if (newButtonImage) {
-                [_addTabButton setAlternateImage:newButtonImage];
-            }
-            
-            newButtonImage = [style addTabButtonRolloverImage];
-            if (newButtonImage) {
-                [_addTabButton setRolloverImage:newButtonImage];
-            }
-        }
-        
-        [self update];
+  if (style != newStyle)
+  {
+    [style autorelease];
+    style = [newStyle retain];
+    
+    // restyle add tab button
+    if (_addTabButton)
+    {
+      NSImage *newButtonImage = [style addTabButtonImage];
+      if (newButtonImage)
+      {
+        [_addTabButton setUsualImage:newButtonImage];
+      }
+      
+      newButtonImage = [style addTabButtonPressedImage];
+      if (newButtonImage)
+      {
+        [_addTabButton setAlternateImage:newButtonImage];
+      }
+      
+      newButtonImage = [style addTabButtonRolloverImage];
+      if (newButtonImage)
+      {
+        [_addTabButton setRolloverImage:newButtonImage];
+      }
     }
+    
+    [self update];
+  }
 }
+
 
 - (void)setStyleNamed:(NSString *)name
 {
-    id <PSMTabStyle> newStyle;
-    if ([name isEqualToString:@"Aqua"]) {
-        newStyle = [[PSMAquaTabStyle alloc] init];
-    } else if ([name isEqualToString:@"Unified"]) {
-        newStyle = [[PSMUnifiedTabStyle alloc] init];
-    } else if ([name isEqualToString:@"Adium"]) {
-        newStyle = [[PSMAdiumTabStyle alloc] init];
-    } else {
-        newStyle = [[PSMMetalTabStyle alloc] init];
-    }
-   
-    [self setStyle:newStyle];
-    [newStyle release];
+  id <PSMTabStyle> newStyle;
+  newStyle = [[PSMMetalTabStyle alloc] init];
+ 
+  [self setStyle:newStyle];
+  [newStyle release];
 }
+
 
 - (PSMTabBarOrientation)orientation
 {
