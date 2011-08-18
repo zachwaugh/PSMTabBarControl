@@ -1,11 +1,13 @@
-This my fork of PSMTabBarControl. It was originally created by [http://www.positivespinmedia.com/dev/PSMTabBarControl.html](http://www.positivespinmedia.com/dev/PSMTabBarControl.html), then updated at [http://code.google.com/p/maccode/source/browse/#svn/trunk/Utilities/PSMTabBarControl](http://code.google.com/p/maccode/source/browse/#svn/trunk/Utilities/PSMTabBarControl). The initial commit of my fork is from r291 of the Google code repo. Project hasn't been updated on either site in a few years, but still works well. My fork is an attempt to modernize some of the code and interface for my own purposes, but I can't promise I'll keep maintaining it.
+This my fork of PSMTabBarControl. It was originally created by [http://www.positivespinmedia.com/dev/PSMTabBarControl.html](http://www.positivespinmedia.com/dev/PSMTabBarControl.html), then updated at [http://code.google.com/p/maccode/source/browse/#svn/trunk/Utilities/PSMTabBarControl](http://code.google.com/p/maccode/source/browse/#svn/trunk/Utilities/PSMTabBarControl). The initial commit of my fork is from r291 of the Google code repo. Project hasn't been updated on either site in a few years, but still works well. My fork is an attempt to modernize some of the code and interface, but I can't promise I'll keep maintaining it. I'm also stripping out stuff I'm not planning on using, so I'm no longer supporting vertical orientation or multiple tab styles.
 
 ## Changes
 
 The inital commit is an unmodified import from the svn repo. Everything after are updates by me:
 
-- The original project included an Interface Builder palette which is no longer supported and has been removed.
-
+- The original project included an Interface Builder palette which is no longer supported and has been removed
+- Vertical orientation is no longer supported
+- Multiple tab styles no longer supported
+- Only supporting 10.6 and later
 
 ## License
 
