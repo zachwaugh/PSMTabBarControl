@@ -727,11 +727,6 @@
   [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
   _isHidden = hide;
-  _currentStep = 0;
-  if (!animate)
-  {
-    _currentStep = (NSInteger)kPSMHideAnimationSteps;
-	}
 
 	if (hide)
   {

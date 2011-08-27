@@ -336,9 +336,8 @@
 - (void)drawTabCell:(PSMTabBarCell *)cell
 {
   NSRect cellFrame = [cell frame];	
-  NSColor *lineColor = nil;
+  NSColor *lineColor = [NSColor darkGrayColor];
   NSBezierPath *bezier = [NSBezierPath bezierPath];
-  lineColor = [NSColor darkGrayColor];
 	
   if ([cell state] == NSOnState)
   {
@@ -348,33 +347,21 @@
     [lineColor set];
     [bezier setLineWidth:1.0];
     
-    // background
-    [NSGraphicsContext saveGraphicsState];
-    [bezier addClip];
-    NSDrawWindowBackground(cellFrame);
-    [NSGraphicsContext restoreGraphicsState];
-			      
-//			[bezier moveToPoint:NSMakePoint(aRect.origin.x, aRect.origin.y)];
-//			[bezier lineToPoint:NSMakePoint(aRect.origin.x, aRect.origin.y + aRect.size.height - 1.5)];
-//			[bezier lineToPoint:NSMakePoint(aRect.origin.x + 1.5, aRect.origin.y+aRect.size.height)];
-//			[bezier lineToPoint:NSMakePoint(aRect.origin.x+aRect.size.width - 2.5, aRect.origin.y + aRect.size.height)];
-//			[bezier lineToPoint:NSMakePoint(aRect.origin.x+aRect.size.width, aRect.origin.y + aRect.size.height - 1.5)];
-//			[bezier lineToPoint:NSMakePoint(aRect.origin.x+aRect.size.width, aRect.origin.y)];
-//      
-//			if ([[cell controlView] frame].size.height < 2)
-//      {
-//				// special case of hidden control; need line across top of cell
-//				[bezier moveToPoint:NSMakePoint(aRect.origin.x, aRect.origin.y+0.5)];
-//				[bezier lineToPoint:NSMakePoint(aRect.origin.x+aRect.size.width, aRect.origin.y+0.5)];
-//			}
-		
-//    NSShadow *dropShadow = [[NSShadow alloc] init];
-//    [dropShadow setShadowColor:[NSColor colorWithDeviceWhite:0 alpha:0.5]];
-//    [dropShadow setShadowBlurRadius:3];
-//    [dropShadow setShadowOffset:NSMakeSize(0, 2)];
-//    [dropShadow set];
-    
-    [bezier stroke];
+    // special case of hidden control; need line across top of cell
+    if ([[cell controlView] frame].size.height < 2)
+    {
+      NSRectFillUsingOperation(tabRect, NSCompositeSourceOver);
+    }
+    else
+    {
+      // background
+      [NSGraphicsContext saveGraphicsState];
+      [bezier addClip];
+      NSDrawWindowBackground(cellFrame);
+      [NSGraphicsContext restoreGraphicsState];
+      
+      [bezier stroke];
+    }
   }
   else
   {
@@ -494,10 +481,6 @@
 {
 	//Draw for our whole bounds; it'll be automatically clipped to fit the appropriate drawing area
 	rect = [tabBar bounds];
-
-	if (orientation == PSMTabBarVerticalOrientation && [tabBar frame].size.width < 2) {
-		return;
-	}
 	
 	[NSGraphicsContext saveGraphicsState];
 	[[NSGraphicsContext currentContext] setShouldAntialias:NO];
@@ -512,27 +495,15 @@
   
 	[[NSColor darkGrayColor] set];
 	
-  // Bottom line
-	if (orientation == PSMTabBarHorizontalOrientation)
-  {
-		[NSBezierPath strokeLineFromPoint:NSMakePoint(rect.origin.x, rect.origin.y + 0.5) toPoint:NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + 0.5)];
-		[NSBezierPath strokeLineFromPoint:NSMakePoint(rect.origin.x, rect.origin.y + rect.size.height - 0.5) toPoint:NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height - 0.5)];
-	}
-  else
-  {
-		[NSBezierPath strokeLineFromPoint:NSMakePoint(rect.origin.x, rect.origin.y + 0.5) toPoint:NSMakePoint(rect.origin.x, rect.origin.y + rect.size.height + 0.5)];
-		[NSBezierPath strokeLineFromPoint:NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + 0.5) toPoint:NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height + 0.5)];
-	}
+  [NSBezierPath strokeLineFromPoint:NSMakePoint(rect.origin.x, rect.origin.y + 0.5) toPoint:NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + 0.5)];
+  [NSBezierPath strokeLineFromPoint:NSMakePoint(rect.origin.x, rect.origin.y + rect.size.height - 0.5) toPoint:NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height - 0.5)];
 	
 	[NSGraphicsContext restoreGraphicsState];
 }
 
+
 - (void)drawTabBar:(PSMTabBarControl *)bar inRect:(NSRect)rect
-{
-	if (orientation != [bar orientation]) {
-		orientation = [bar orientation];
-	}
-	
+{	
 	if (tabBar != bar) {
 		tabBar = bar;
 	}
