@@ -733,7 +733,7 @@
 		[_overflowPopUpButton removeFromSuperview];
 		[_addTabButton removeFromSuperview];
 	}
-  else if (!animate)
+  else
   {
 		[self addSubview:_overflowPopUpButton];
 		[self addSubview:_addTabButton];
