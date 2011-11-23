@@ -208,7 +208,7 @@
 
 	//unbind all the items to prevent crashing
 	//not sure if this is necessary or not
-	NSEnumerator *enumerator = [_cells objectEnumerator];
+	NSEnumerator *enumerator = [[[_cells copy] autorelease] objectEnumerator];
 	PSMTabBarCell *nextCell;
 	while ( (nextCell = [enumerator nextObject]) ) {
 		[self removeTabForCell:nextCell];
