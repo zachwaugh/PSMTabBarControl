@@ -12,6 +12,7 @@
 
 #define kPSMMetalObjectCounterRadius 7.0
 #define kPSMMetalCounterMinWidth 20
+#define kPSMMetalPadding 20
 
 @implementation PSMMetalTabStyle
 
@@ -415,63 +416,64 @@
   }
   
   // icon
-  if ([cell hasIcon])
-  {
-    NSRect iconRect = [self iconRectForTabCell:cell];
-    NSImage *icon = [[[cell representedObject] identifier] icon];
-      
-    if ([controlView isFlipped])
-    {
-      iconRect.origin.y += iconRect.size.height;
-    }
-      
-    // center in available space (in case icon image is smaller than kPSMTabBarIconWidth)
-    if ([icon size].width < kPSMTabBarIconWidth)
-    {
-      iconRect.origin.x += (kPSMTabBarIconWidth - [icon size].width)/2.0;
-    }
-    
-    if ([icon size].height < kPSMTabBarIconWidth)
-    {
-      iconRect.origin.y -= (kPSMTabBarIconWidth - [icon size].height)/2.0;
-    }
-      
-    [icon compositeToPoint:iconRect.origin operation:NSCompositeSourceOver fraction:1.0];
-  }
+//  if ([cell hasIcon])
+//  {
+//    NSRect iconRect = [self iconRectForTabCell:cell];
+//    NSImage *icon = [[[cell representedObject] identifier] icon];
+//      
+//    if ([controlView isFlipped])
+//    {
+//      iconRect.origin.y += iconRect.size.height;
+//    }
+//      
+//    // center in available space (in case icon image is smaller than kPSMTabBarIconWidth)
+//    if ([icon size].width < kPSMTabBarIconWidth)
+//    {
+//      iconRect.origin.x += (kPSMTabBarIconWidth - [icon size].width)/2.0;
+//    }
+//    
+//    if ([icon size].height < kPSMTabBarIconWidth)
+//    {
+//      iconRect.origin.y -= (kPSMTabBarIconWidth - [icon size].height)/2.0;
+//    }
+//      
+//    [icon compositeToPoint:iconRect.origin operation:NSCompositeSourceOver fraction:1.0];
+//  }
   
   // object counter
-//  if ([cell count] > 0)
-//  {
-//    [[cell countColor] ?: [NSColor colorWithCalibratedWhite:0.3 alpha:0.6] set];
-//    NSBezierPath *path = [NSBezierPath bezierPath];
-//    NSRect myRect = [self objectCounterRectForTabCell:cell];
-//    if ([cell state] == NSOnState) {
-//        myRect.origin.y -= 1.0;
-//    }
-//    [path moveToPoint:NSMakePoint(myRect.origin.x + kPSMMetalObjectCounterRadius, myRect.origin.y)];
-//    [path lineToPoint:NSMakePoint(myRect.origin.x + myRect.size.width - kPSMMetalObjectCounterRadius, myRect.origin.y)];
-//    [path appendBezierPathWithArcWithCenter:NSMakePoint(myRect.origin.x + myRect.size.width - kPSMMetalObjectCounterRadius, myRect.origin.y + kPSMMetalObjectCounterRadius) radius:kPSMMetalObjectCounterRadius startAngle:270.0 endAngle:90.0];
-//    [path lineToPoint:NSMakePoint(myRect.origin.x + kPSMMetalObjectCounterRadius, myRect.origin.y + myRect.size.height)];
-//    [path appendBezierPathWithArcWithCenter:NSMakePoint(myRect.origin.x + kPSMMetalObjectCounterRadius, myRect.origin.y + kPSMMetalObjectCounterRadius) radius:kPSMMetalObjectCounterRadius startAngle:90.0 endAngle:270.0];
-//    [path fill];
-//    
-//    // draw attributed string centered in area
-//    NSRect counterStringRect;
-//    NSAttributedString *counterString = [self attributedObjectCountValueForTabCell:cell];
-//    counterStringRect.size = [counterString size];
-//    counterStringRect.origin.x = myRect.origin.x + ((myRect.size.width - counterStringRect.size.width) / 2.0) + 0.25;
-//    counterStringRect.origin.y = myRect.origin.y + ((myRect.size.height - counterStringRect.size.height) / 2.0) + 0.5;
-//    [counterString drawInRect:counterStringRect];
-//  }
+  if ([cell count] > 0)
+  {
+    [[cell countColor] ?: [NSColor colorWithCalibratedWhite:0.3 alpha:0.6] set];
+    NSBezierPath *path = [NSBezierPath bezierPath];
+    NSRect myRect = [self objectCounterRectForTabCell:cell];
+    if ([cell state] == NSOnState) {
+        myRect.origin.y -= 1.0;
+    }
+    [path moveToPoint:NSMakePoint(myRect.origin.x + kPSMMetalObjectCounterRadius, myRect.origin.y)];
+    [path lineToPoint:NSMakePoint(myRect.origin.x + myRect.size.width - kPSMMetalObjectCounterRadius, myRect.origin.y)];
+    [path appendBezierPathWithArcWithCenter:NSMakePoint(myRect.origin.x + myRect.size.width - kPSMMetalObjectCounterRadius, myRect.origin.y + kPSMMetalObjectCounterRadius) radius:kPSMMetalObjectCounterRadius startAngle:270.0 endAngle:90.0];
+    [path lineToPoint:NSMakePoint(myRect.origin.x + kPSMMetalObjectCounterRadius, myRect.origin.y + myRect.size.height)];
+    [path appendBezierPathWithArcWithCenter:NSMakePoint(myRect.origin.x + kPSMMetalObjectCounterRadius, myRect.origin.y + kPSMMetalObjectCounterRadius) radius:kPSMMetalObjectCounterRadius startAngle:90.0 endAngle:270.0];
+    [path fill];
+    
+    // draw attributed string centered in area
+    NSRect counterStringRect;
+    NSAttributedString *counterString = [self attributedObjectCountValueForTabCell:cell];
+    counterStringRect.size = [counterString size];
+    counterStringRect.origin.x = myRect.origin.x + ((myRect.size.width - counterStringRect.size.width) / 2.0) + 0.25;
+    counterStringRect.origin.y = myRect.origin.y + ((myRect.size.height - counterStringRect.size.height) / 2.0) + 0.5;
+    [counterString drawInRect:counterStringRect];
+  }
   
   // draw label
   NSRect labelRect = cellFrame;
   NSAttributedString *string = [cell attributedStringValue];
   NSSize textSize = [string size];
   float textHeight = textSize.height;
+  float labelWidth = MIN(cellFrame.size.width - (kPSMMetalPadding * 2), textSize.width);
   labelRect.size.height = textHeight;
-  labelRect.size.width = textSize.width;
-  labelRect.origin.x = cellFrame.origin.x + ((cellFrame.size.width - textSize.width) / 2);
+  labelRect.size.width = labelWidth;
+  labelRect.origin.x = cellFrame.origin.x + ((cellFrame.size.width - labelWidth) / 2);
   labelRect.origin.y = ((cellFrame.size.height - textHeight) / 2);
 
   [string drawInRect:labelRect];
