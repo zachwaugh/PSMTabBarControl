@@ -67,11 +67,11 @@
     [[tabView tabViewItemAtIndex:1] setLabel:@"Bar"];
     [[tabView tabViewItemAtIndex:2] setLabel:@"Control"];
     NSRect tabViewBounds = [[[tabView tabViewItemAtIndex:0] view] bounds];
-    [[tabView tabViewItemAtIndex:0] setView:[[NSImageView alloc] initWithFrame:tabViewBounds]];
+    [[tabView tabViewItemAtIndex:0] setView:[[[NSImageView alloc] initWithFrame:tabViewBounds] autorelease]];
     [[[tabView tabViewItemAtIndex:0] view] setImage:[NSImage imageNamed:@"mcqueen_large"]];
-    [[tabView tabViewItemAtIndex:1] setView:[[NSImageView alloc] initWithFrame:tabViewBounds]];
+    [[tabView tabViewItemAtIndex:1] setView:[[[NSImageView alloc] initWithFrame:tabViewBounds] autorelease]];
     [[[tabView tabViewItemAtIndex:1] view] setImage:[NSImage imageNamed:@"mater_large"]];
-    [[tabView tabViewItemAtIndex:2] setView:[[NSImageView alloc] initWithFrame:tabViewBounds]];
+    [[tabView tabViewItemAtIndex:2] setView:[[[NSImageView alloc] initWithFrame:tabViewBounds] autorelease]];
     [[[tabView tabViewItemAtIndex:2] view] setImage:[NSImage imageNamed:@"sally_large"]];
 }
 
@@ -429,18 +429,18 @@
 	[transform scaleXBy:1.0 yBy:-1.0];
 	[transform concat];
 	tabFrame.origin.y = -tabFrame.origin.y - tabFrame.size.height;
-	[(id <PSMTabStyle>)[[aTabView delegate] style] drawBackgroundInRect:tabFrame];
+	[(id <PSMTabStyle>)[(PSMTabBarControl *)[aTabView delegate] style] drawBackgroundInRect:tabFrame];
 	[transform invert];
 	[transform concat];
 	
 	[viewImage unlockFocus];
 	
 	if ([(PSMTabBarControl *)[aTabView delegate] orientation] == PSMTabBarHorizontalOrientation) {
-		offset->width = [(id <PSMTabStyle>)[[aTabView delegate] style] leftMarginForTabBarControl];
+		offset->width = [(id <PSMTabStyle>)[(PSMTabBarControl *)[aTabView delegate] style] leftMarginForTabBarControl];
 		offset->height = 22;
 	} else {
 		offset->width = 0;
-		offset->height = 22 + [(id <PSMTabStyle>)[[aTabView delegate] style] leftMarginForTabBarControl];
+		offset->height = 22 + [(id <PSMTabStyle>)[(PSMTabBarControl *)[aTabView delegate] style] leftMarginForTabBarControl];
 	}
 	
 	if (styleMask) {
@@ -456,7 +456,7 @@
 	
 	//create a new window controller with no tab items
 	WindowController *controller = [[WindowController alloc] initWithWindowNibName:@"Window"];
-	id <PSMTabStyle> style = (id <PSMTabStyle>)[[aTabView delegate] style];
+	id <PSMTabStyle> style = (id <PSMTabStyle>)[(PSMTabBarControl *)[aTabView delegate] style];
 	
 	NSRect windowFrame = [[controller window] frame];
 	point.y += windowFrame.size.height - [[[controller window] contentView] frame].size.height;
