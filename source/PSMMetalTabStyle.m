@@ -399,7 +399,7 @@
   // close button - only show if mouse over cell
   if ([cell hasCloseButton] && ![cell isCloseButtonSuppressed] && [cell isHighlighted])
   {
-    NSSize closeButtonSize = NSZeroSize;
+//    NSSize closeButtonSize = NSZeroSize;
     NSRect closeButtonRect = [cell closeButtonRectForFrame:cellFrame];
     NSImage *closeButton = nil;
     
@@ -407,7 +407,7 @@
     if ([cell closeButtonOver]) closeButton = [cell isEdited] ? metalCloseDirtyButtonOver : metalCloseButtonOver;
     if ([cell closeButtonPressed]) closeButton = [cell isEdited] ? metalCloseDirtyButtonDown : metalCloseButtonDown;
     
-    closeButtonSize = [closeButton size];
+//    closeButtonSize = [closeButton size];
     if ([controlView isFlipped]) {
         closeButtonRect.origin.y += closeButtonRect.size.height;
     }
@@ -525,7 +525,7 @@
     [attrStr addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:11.0] range:range];
     NSMutableParagraphStyle *centeredParagraphStyle = nil;
     if (!centeredParagraphStyle) {
-        centeredParagraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] retain];
+        centeredParagraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
         [centeredParagraphStyle setAlignment:NSCenterTextAlignment];
     }
     [attrStr addAttribute:NSParagraphStyleAttributeName value:centeredParagraphStyle range:range];
