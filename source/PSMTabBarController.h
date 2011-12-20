@@ -10,7 +10,7 @@
 
 @class PSMTabBarControl, PSMTabBarCell;
 
-@interface PSMTabBarController : NSObject {
+@interface PSMTabBarController : NSObject <NSMenuDelegate> {
     PSMTabBarControl *_control;
     NSMutableArray *_cellTrackingRects, *_closeButtonTrackingRects;
     NSMutableArray *_cellFrames;
