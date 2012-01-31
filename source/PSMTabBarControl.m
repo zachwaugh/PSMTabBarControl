@@ -912,7 +912,7 @@
         NSMutableArray *targetFrames = [NSMutableArray arrayWithCapacity:[_cells count]];
         
         for (NSInteger i = 0; i < [_cells count]; i++) {
-//            currentCell = [_cells objectAtIndex:i];
+            currentCell = [_cells objectAtIndex:i];
             
             //we're going from NSRect -> NSValue -> NSRect -> NSValue here - oh well
             [targetFrames addObject:[NSValue valueWithRect:[_controller cellFrameAtIndex:i]]];
