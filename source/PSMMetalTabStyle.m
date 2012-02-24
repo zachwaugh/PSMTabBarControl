@@ -309,7 +309,7 @@
     
     // Add font attribute
     [attrStr addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:11.0] range:range];
-    [attrStr addAttribute:NSForegroundColorAttributeName value:[[NSColor textColor] colorWithAlphaComponent:0.75] range:range];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[[NSColor textColor] colorWithAlphaComponent:([[tabBar window] isMainWindow] ? 0.75 : 0.5)] range:range];
     
     // Add shadow attribute
     NSShadow* shadow = shadow = [[[NSShadow alloc] init] autorelease];
@@ -337,7 +337,7 @@
 - (void)drawTabCell:(PSMTabBarCell *)cell
 {
   NSRect cellFrame = [cell frame];	
-  NSColor *lineColor = [NSColor darkGrayColor];
+  NSColor *lineColor = ([[tabBar window] isMainWindow]) ? [NSColor darkGrayColor] : [NSColor grayColor];
   NSBezierPath *bezier = [NSBezierPath bezierPath];
 	
   if ([cell state] == NSOnState)
@@ -399,7 +399,7 @@
   // close button - only show if mouse over cell
   if ([cell hasCloseButton] && ![cell isCloseButtonSuppressed] && [cell isHighlighted])
   {
-//    NSSize closeButtonSize = NSZeroSize;
+    NSSize closeButtonSize = NSZeroSize;
     NSRect closeButtonRect = [cell closeButtonRectForFrame:cellFrame];
     NSImage *closeButton = nil;
     
@@ -407,7 +407,7 @@
     if ([cell closeButtonOver]) closeButton = [cell isEdited] ? metalCloseDirtyButtonOver : metalCloseButtonOver;
     if ([cell closeButtonPressed]) closeButton = [cell isEdited] ? metalCloseDirtyButtonDown : metalCloseButtonDown;
     
-//    closeButtonSize = [closeButton size];
+    closeButtonSize = [closeButton size];
     if ([controlView isFlipped]) {
         closeButtonRect.origin.y += closeButtonRect.size.height;
     }
@@ -487,15 +487,22 @@
 	[NSGraphicsContext saveGraphicsState];
 	[[NSGraphicsContext currentContext] setShouldAntialias:NO];
 
-  [[NSColor colorWithCalibratedWhite:0.0 alpha:0.1] set];
+  [[NSColor colorWithCalibratedWhite:0.0 alpha:([[tabBar window] isMainWindow] ? 0.1 : 0.05)] set];
   NSRectFillUsingOperation(rect, NSCompositeSourceAtop);
   
-  NSGradient *shadow = [[NSGradient alloc ] initWithStartingColor:[NSColor colorWithDeviceWhite:0 alpha:0.15] endingColor:[NSColor clearColor]];
+  NSGradient *shadow = [[NSGradient alloc ] initWithStartingColor:[NSColor colorWithDeviceWhite:0 alpha:([[tabBar window] isMainWindow] ? 0.15 : 0.1)] endingColor:[NSColor clearColor]];
   NSRect shadowRect = NSMakeRect(rect.origin.x, rect.origin.y, rect.size.width, 7);
   [shadow drawInRect:shadowRect angle:90];
   [shadow release];
   
-	[[NSColor darkGrayColor] set];
+  if ([[tabBar window] isMainWindow])
+  {
+    [[NSColor darkGrayColor] set];
+  }
+  else
+  {
+    [[NSColor grayColor] set];
+  }
 	
   [NSBezierPath strokeLineFromPoint:NSMakePoint(rect.origin.x, rect.origin.y + 0.5) toPoint:NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + 0.5)];
   [NSBezierPath strokeLineFromPoint:NSMakePoint(rect.origin.x, rect.origin.y + rect.size.height - 0.5) toPoint:NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height - 0.5)];
@@ -525,7 +532,7 @@
     [attrStr addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:11.0] range:range];
     NSMutableParagraphStyle *centeredParagraphStyle = nil;
     if (!centeredParagraphStyle) {
-        centeredParagraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
+        centeredParagraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] retain];
         [centeredParagraphStyle setAlignment:NSCenterTextAlignment];
     }
     [attrStr addAttribute:NSParagraphStyleAttributeName value:centeredParagraphStyle range:range];

@@ -87,8 +87,6 @@
     NSRect rect;
     if (index > -1 && index < [_cellTrackingRects count]) {
         rect = [[_cellTrackingRects objectAtIndex:index] rectValue];
-    } else if (index >= [_cellTrackingRects count]) {
-        rect = [[_cellTrackingRects lastObject] rectValue];
     } else {
         NSLog(@"cellTrackingRectAtIndex: Invalid index (%ld)", (long)index);
         rect = NSZeroRect;
@@ -109,8 +107,6 @@
     NSRect rect;
     if (index > -1 && index < [_closeButtonTrackingRects count]) {
         rect = [[_closeButtonTrackingRects objectAtIndex:index] rectValue];
-    } else if (index >= [_closeButtonTrackingRects count]) {
-        rect = [[_closeButtonTrackingRects lastObject] rectValue];
     } else {
         NSLog(@"closeButtonTrackingRectAtIndex: Invalid index (%ld)", (long)index);
         rect = NSZeroRect;
@@ -346,7 +342,7 @@ static NSInteger potentialMinimumForArray(NSArray *array, NSInteger minimum)
 						[newWidths addObject:[NSNumber numberWithDouble:(desiredWidth < averageWidth && [_control sizeCellsToFit]) ? desiredWidth : averageWidth]];
 					}
 
-//					totalOccupiedWidth = [[newWidths valueForKeyPath:@"@sum.intValue"] integerValue];
+					totalOccupiedWidth = [[newWidths valueForKeyPath:@"@sum.intValue"] integerValue];
 					break;
 				}
 				
@@ -507,7 +503,7 @@ static NSInteger potentialMinimumForArray(NSArray *array, NSInteger minimum)
 				[newWidths replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:availableWidth - [cellWidth doubleValue]]];
 			}
 
-//			numberOfVisibleCells = 2;
+			numberOfVisibleCells = 2;
 		}
 	}
 
